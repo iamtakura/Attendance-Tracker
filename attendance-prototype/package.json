@@ -1,0 +1,12 @@
+{
+  "name": "attendance-prototype",
+  "version": "0.1.0",
+  "description": "A prototype for the Student Attendance Tracker project.",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

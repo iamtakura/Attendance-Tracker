@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - Attendance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Administrator Attendance Portal</h1>
+    </header>
+    <main>
+        <section id="admin-login-section">
+            <h2>Admin Login</h2>
+            <form id="admin-login-form">
+                <div>
+                    <label for="admin-username">Username:</label>
+                    <input type="text" id="admin-username" name="username" required>
+                </div>
+                <div>
+                    <label for="admin-password">Password:</label>
+                    <input type="password" id="admin-password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </section>
+
+        <section id="admin-dashboard" style="display: none;">
+            <h2>Welcome, <span id="admin-name">Admin</span>!</h2>
+            <h3>View Student Attendance</h3>
+            <div>
+                <label for="select-student">Select Student:</label>
+                <select id="select-student" name="select-student">
+                    <!-- Student options will be loaded here -->
+                    <option value="">--Select a Student--</option>
+                </select>
+            </div>
+            <div id="student-attendance-details">
+                <!-- Details for selected student will be shown here -->
+                <p>Select a student to view their attendance.</p>
+            </div>
+
+            <h3>Mark Attendance</h3>
+            <form id="mark-attendance-form">
+                <div>
+                    <label for="mark-student">Student ID:</label>
+                    <input type="text" id="mark-student" name="student-id" required>
+                </div>
+                <div>
+                    <label for="mark-date">Date:</label>
+                    <input type="date" id="mark-date" name="date" required>
+                </div>
+                <div>
+                    <label for="mark-status">Status:</label>
+                    <select id="mark-status" name="status">
+                        <option value="present">Present</option>
+                        <option value="absent">Absent</option>
+                        <option value="excused">Excused</option>
+                    </select>
+                </div>
+                <button type="submit">Mark Attendance</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Attendance Tracker</p>
+    </footer>
+    <script src="script.js"></script>
+    <!-- Consider a separate admin_script.js if logic diverges significantly -->
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Attendance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Student Attendance Portal</h1>
+    </header>
+    <main>
+        <section id="login-section">
+            <h2>Login</h2>
+            <form id="student-login-form">
+                <div>
+                    <label for="student-username">Username:</label>
+                    <input type="text" id="student-username" name="username" required>
+                </div>
+                <div>
+                    <label for="student-password">Password:</label>
+                    <input type="password" id="student-password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </section>
+
+        <section id="student-dashboard" style="display: none;">
+            <h2>Welcome, <span id="student-name">Student</span>!</h2>
+            <h3>Your Attendance</h3>
+            <div id="attendance-record">
+                <!-- Attendance data will be loaded here by script.js -->
+                <p>Loading attendance...</p>
+            </div>
+            <h3>Report Absence</h3>
+            <form id="report-absence-form">
+                <div>
+                    <label for="absence-date">Date of Absence:</label>
+                    <input type="date" id="absence-date" name="absence-date" required>
+                </div>
+                <div>
+                    <label for="absence-reason">Reason (optional):</label>
+                    <textarea id="absence-reason" name="absence-reason"></textarea>
+                </div>
+                <button type="submit">Submit Absence Report</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Attendance Tracker</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
