@@ -6,13 +6,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Common Elements ---
     // (Could be separated into student_script.js and admin_script.js later)
 
-    // --- Student Portal Logic (index.html) ---
+    // --- Student Portal Logic ---
+    const studentSignupForm = document.getElementById('student-signup-form');
     const studentLoginForm = document.getElementById('student-login-form');
     const studentDashboard = document.getElementById('student-dashboard');
     const studentLoginSection = document.getElementById('login-section'); // Assuming student login is in 'login-section'
     const studentNameSpan = document.getElementById('student-name');
     const attendanceRecordDiv = document.getElementById('attendance-record');
     const reportAbsenceForm = document.getElementById('report-absence-form');
+
+    if (studentSignupForm) {
+        studentSignupForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            console.log('Signing up with data:', data);
+
+            // In a real app, you'd have more robust validation
+            if (!data.username || !data.password) {
+                alert('Username and password are required.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    alert('Sign up successful! Please log in.');
+                    window.location.href = 'login.html'; // Redirect to login page
+                } else {
+                    const error = await response.json();
+                    alert(`Sign up failed: ${error.message}`);
+                }
+            } catch (error) {
+                console.error('Sign up error:', error);
+                alert('An error occurred during sign up.');
+            }
+        });
+    }
 
     if (studentLoginForm) {
         studentLoginForm.addEventListener('submit', async (event) => {
