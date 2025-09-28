@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs').promises;
 const bcrypt = require('bcryptjs');
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -31,18 +31,15 @@ app.post('/api/signup', async (req, res) => {
         const csvRow = `\n${fullName},${year},${program},${username},${hashedPassword}`;
         const csvFilePath = path.join(__dirname, 'students.csv');
 
-        // Append data to CSV file
-        fs.appendFile(csvFilePath, csvRow, (err) => {
-            if (err) {
-                console.error('Error writing to CSV file:', err);
-                return res.status(500).json({ message: 'Failed to save student data.' });
-            }
-            console.log(`New student signed up: ${username}`);
-            res.status(201).json({ message: 'Signup successful!' });
-        });
+        // Append data to CSV file using promises for better error handling
+        await fs.appendFile(csvFilePath, csvRow);
+
+        console.log(`New student signed up: ${username}`);
+        res.status(201).json({ message: 'Signup successful!' });
     } catch (error) {
         console.error('Signup error:', error);
-        res.status(500).json({ message: 'An error occurred during signup.' });
+        // Send a more specific error message back to the client
+        res.status(500).json({ message: 'An error occurred during signup.', error: error.message });
     }
 });
 

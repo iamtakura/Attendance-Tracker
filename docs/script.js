@@ -39,8 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Sign up successful! Please log in.');
                     window.location.href = 'login.html'; // Redirect to login page
                 } else {
-                    const error = await response.json();
-                    alert(`Sign up failed: ${error.message}`);
+                    const errorData = await response.json();
+                    // Display the more detailed error from the server, if available
+                    const alertMessage = errorData.error ?
+                        `Sign up failed: ${errorData.message}\nServer error: ${errorData.error}` :
+                        `Sign up failed: ${errorData.message}`;
+                    alert(alertMessage);
                 }
             } catch (error) {
                 console.error('Sign up error:', error);
